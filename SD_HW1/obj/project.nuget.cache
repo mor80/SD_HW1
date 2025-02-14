@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "r83OkfBsng4=",
+  "success": true,
+  "projectFilePath": "/Users/emreguuv/Documents/HSE/2 COURSE/Software Design/SD_HW1/SD_HW1/SD_HW1.csproj",
+  "expectedPackageFiles": [
+    "/Users/emreguuv/.nuget/packages/microsoft.extensions.dependencyinjection/9.0.2/microsoft.extensions.dependencyinjection.9.0.2.nupkg.sha512",
+    "/Users/emreguuv/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/9.0.2/microsoft.extensions.dependencyinjection.abstractions.9.0.2.nupkg.sha512"
+  ],
+  "logs": []
+}
