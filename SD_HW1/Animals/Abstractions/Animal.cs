@@ -8,8 +8,8 @@ namespace SD_HW1.Animals.Abstractions;
 /// </summary>
 public abstract class Animal : IAlive, IInventory
 {
-    public int Food { get; set; } // IAlive
-    public int Number { get; set; } // IInventory
+    public int Food { get; set; }
+    public int Number { get; set; }
     public string Name { get; set; }
     public bool IsHealthy { get; set; }
 

@@ -8,10 +8,8 @@ public class Zoo : IZoo
 {
     private readonly IVetClinic _vetClinic;
 
-    // Храним всех животных, которых приняли
     private readonly List<Animal> _animals = new();
 
-    // Храним все вещи
     private readonly List<Thing> _things = new();
 
     public Zoo(IVetClinic vetClinic)
@@ -56,14 +54,38 @@ public class Zoo : IZoo
                           $"суммарное потребление корма в день: {totalFood} кг");
     }
 
+    /// <summary>
+    /// Метод, который возвращает список животных (Herbo) 
+    /// с KindnessLevel > 5. Удобно использовать в тестах.
+    /// </summary>
+    public List<Herbo> GetContactZooCandidatesInternal()
+    {
+        return _animals.OfType<Herbo>().Where(a => a.KindnessLevel > 5).ToList();
+    }
+    
+    /// <summary>
+    /// Метод, который возвращает общий инвентарь зоопарка.
+    /// </summary>
+    public List<IInventory> GetAllInventoryInternal()
+    {
+        var allInventory = new List<IInventory>();
+        allInventory.AddRange(_animals);
+        allInventory.AddRange(_things);
+        return allInventory;
+    }
+    
+    /// <summary>
+    /// Метод, который возвращает общий объем потребления еды животными.
+    /// </summary>
+    public int GetTotalFoodConsumption()
+    {
+        return _animals.Sum(a => a.Food);
+    }
+
+
     public void PrintContactZooCandidates()
     {
-        // Животное подходит в контактный зоопарк, если оно травоядное (Herbo) и KindnessLevel > 5
-        var candidates = _animals
-            .OfType<Herbo>()
-            .Where(a => a.KindnessLevel > 5)
-            .ToList();
-
+        var candidates = GetContactZooCandidatesInternal();
         if (candidates.Count == 0)
         {
             Console.WriteLine("[Zoo] Нет животных, подходящих для контактного зоопарка.");
@@ -85,7 +107,6 @@ public class Zoo : IZoo
 
     public void PrintAllInventory()
     {
-        // Для удобства объединим вещи и животных (оба реализуют IInventory) и выведем
         var allInventory = new List<IInventory>();
         allInventory.AddRange(_animals);
         allInventory.AddRange(_things);
@@ -99,8 +120,7 @@ public class Zoo : IZoo
         Console.WriteLine("[Zoo] Все объекты на балансе (включая животных):");
         foreach (var item in allInventory)
         {
-            // item может быть Animal или Thing, поэтому делаем простой вывод
-            Console.WriteLine("   " + item);
+            Console.WriteLine("   " + item.ToString());
         }
     }
 }
